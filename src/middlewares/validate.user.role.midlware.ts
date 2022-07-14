@@ -11,7 +11,6 @@ const validateUserRole = (roles: string[]) => async (req: RequestWithUser, res: 
 
   for (const role in roles) {
     permittedUser.push(...ownerRoles[roles[role]]);
-    // console.log(role)
   }
   if (permittedUser.findIndex(role => role.userId === userId) > 0) {
     next();

@@ -9,7 +9,6 @@ const storage = multer.diskStorage({
     callBack(null, 'src/uploads/');
   },
   filename: (req: Request, file: Express.Multer.File, callBack: FileNameCallback) => {
-    console.log(file.mimetype);
     const filename = `${Date.now()}-${file.originalname}.${file.mimetype.split('/')[1]}`;
     req.url = `${process.env.SERVER_URL}/uploads/${filename}`;
     callBack(null, filename);

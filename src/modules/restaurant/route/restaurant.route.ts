@@ -19,13 +19,9 @@ class ProductProviderRoute implements Routes {
     this.router.get(`${this.path}/slug/:slug`, this.controller.getBySlug);
     this.router.get(`${this.path}/name/:name`, this.controller.getByName);
 
-    this.router.post(`${this.path}`, /* validationMiddleware(CreateRestaurantDto, 'body', true), */ this.controller.create);
+    this.router.post(`${this.path}`, validationMiddleware(CreateRestaurantDto, 'body', true), this.controller.create);
 
-    this.router.put(
-      `${this.path}/:id`,
-      //validationMiddleware(CreateUserDto, 'body', true),
-      this.controller.update,
-    );
+    this.router.put(`${this.path}/:id`, validationMiddleware(CreateRestaurantDto, 'body', true), this.controller.update);
 
     this.router.delete(`${this.path}/:id`, this.controller.delete);
   }

@@ -14,7 +14,6 @@ class UsersRoute implements Routes {
 
   private initializeRoutes() {
     this.router.post(`${this.path}`, Upload.single('image'), this.controller.upload);
-    //this.router.post(`${"uploads"}`, Upload.single('image'), this.controller.upload);
   }
 }
 

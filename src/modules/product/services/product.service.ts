@@ -50,7 +50,6 @@ class Service {
     if (isEmpty(restaurant)) throw new HttpException(400, "You're name");
 
     const data: Partial<IProduct[]> = await this.product.find({ restaurant }).populate('category', 'name').select(attributes);
-    console.log(data);
     if (!data) throw new HttpException(409, 'No Product with provided name');
 
     return data;

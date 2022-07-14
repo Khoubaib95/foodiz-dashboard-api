@@ -16,17 +16,12 @@ class AuthRoute implements Routes {
   private initializeRoutes() {
     this.router.post(`${this.path}signup`, validationMiddleware(CreateUserDto, 'body', true), this.authController.signUp);
     this.router.post(`${this.path}signin`, validationMiddleware(CreateUserDto, 'body', true), this.authController.logIn);
-    this.router.get(
-      `${this.path}validate-email/:userId/:code`,
-      /* validationMiddleware(CreateUserDto, 'body', true),*/ this.authController.validateEmail,
-    );
-    this.router.get(
-      `${this.path}forgot-password/:email`,
-      /*, validationMiddleware(CreateUserDto, 'body', true),*/ this.authController.forgotPassword,
-    );
+    this.router.get(`${this.path}validate-email/:userId/:code`, validationMiddleware(CreateUserDto, 'body', true), this.authController.validateEmail);
+    this.router.get(`${this.path}forgot-password/:email`, validationMiddleware(CreateUserDto, 'body', true), this.authController.forgotPassword);
     this.router.post(
       `${this.path}reset-password/:email/:token`,
-      /*validationMiddleware(CreateUserDto, 'body', true),*/ this.authController.resetPassword,
+      validationMiddleware(CreateUserDto, 'body', true),
+      this.authController.resetPassword,
     );
 
     this.router.post(`${this.path}logout`, this.authController.logOut);

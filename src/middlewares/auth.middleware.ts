@@ -8,14 +8,12 @@ import userModel from '@/modules/user/model/users.model';
 const authMiddleware = async (req: RequestWithUser, res: Response, next: NextFunction) => {
   try {
     const Authorization = req.cookies['Authorization'] || (req.header('Authorization') ? req.header('Authorization').split('Bearer ')[1] : null);
-    console.log('Authorization: ' + Authorization);
     const attributes: string = req.query.attributes as string;
     if (Authorization) {
       const secretKey: string = SECRET_KEY;
       const verificationResponse = (await verify(Authorization, secretKey)) as DataStoredInToken;
       const userId = verificationResponse._id;
       const findUser = await userModel.findById(userId).populate('restaurants.list', 'name ').select(attributes);
-      console.log('AUTH');
       if (findUser) {
         req.user = findUser;
         next();

@@ -81,8 +81,6 @@ class AuthService {
     const dataStoredInToken = { _id: findUser._id };
     const secretKey: string = findUser.password;
     const expiresIn: number = 60 * 30;
-    //const token = sign(dataStoredInToken, secretKey, { expiresIn });
-    console.log(sign(dataStoredInToken, secretKey, { expiresIn }));
     const link = `${CLIENT_URL}/reset-password/${'token'}`;
     return link;
   }
